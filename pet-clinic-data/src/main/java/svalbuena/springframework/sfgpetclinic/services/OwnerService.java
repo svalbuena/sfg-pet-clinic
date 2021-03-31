@@ -2,11 +2,6 @@ package svalbuena.springframework.sfgpetclinic.services;
 
 import svalbuena.springframework.sfgpetclinic.model.Owner;
 
-import java.util.Set;
-
-public interface OwnerService {
-    Owner findById(final Long id);
+public interface OwnerService extends CrudService<Owner, Long> {
     Owner findByLastName(final String lastName);
-    Set<Owner> findAll();
-    Owner save(final Owner owner);
 }
