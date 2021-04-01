@@ -27,7 +27,7 @@ class VetMapServiceTest extends AbstractMapServiceTest<Vet, Long> {
         final Vet vet = new Vet();
         vet.setId(id);
         vet.setFirstName("FIRST_NAME_" + id);
-        vet.setLastName("LAST_NAME" + id);
+        vet.setLastName("LAST_NAME_" + id);
         return vet;
     }
 

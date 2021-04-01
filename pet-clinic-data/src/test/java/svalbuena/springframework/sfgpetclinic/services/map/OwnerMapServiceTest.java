@@ -43,7 +43,7 @@ class OwnerMapServiceTest extends AbstractMapServiceTest<Owner, Long> {
         final Owner owner = new Owner();
         owner.setId(id);
         owner.setFirstName("FIRST_NAME_" + id);
-        owner.setLastName("LAST_NAME" + id);
+        owner.setLastName("LAST_NAME_" + id);
         return owner;
     }
 
