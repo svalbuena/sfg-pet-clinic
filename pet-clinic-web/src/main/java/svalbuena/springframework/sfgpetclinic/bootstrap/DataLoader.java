@@ -6,17 +6,15 @@ import svalbuena.springframework.sfgpetclinic.model.Owner;
 import svalbuena.springframework.sfgpetclinic.model.Vet;
 import svalbuena.springframework.sfgpetclinic.services.OwnerService;
 import svalbuena.springframework.sfgpetclinic.services.VetService;
-import svalbuena.springframework.sfgpetclinic.services.map.OwnerMapService;
-import svalbuena.springframework.sfgpetclinic.services.map.VetMapService;
 
 @Component
 public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataLoader() {
-        this.ownerService = new OwnerMapService();
-        this.vetService = new VetMapService();
+    public DataLoader(final OwnerService ownerService, final VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override
