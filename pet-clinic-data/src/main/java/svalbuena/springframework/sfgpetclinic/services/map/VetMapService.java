@@ -5,10 +5,4 @@ import svalbuena.springframework.sfgpetclinic.model.Vet;
 import svalbuena.springframework.sfgpetclinic.services.VetService;
 
 @Service
-public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
-    @Override
-    public Vet save(final Vet vet) {
-        map.put(vet.getId(), vet);
-        return vet;
-    }
-}
+public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {}

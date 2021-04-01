@@ -1,6 +1,7 @@
 package svalbuena.springframework.sfgpetclinic.services.map;
 
 import org.junit.jupiter.api.Test;
+import svalbuena.springframework.sfgpetclinic.model.BaseEntity;
 import svalbuena.springframework.sfgpetclinic.services.CrudService;
 
 import java.util.HashSet;
@@ -8,18 +9,17 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-abstract class AbstractMapServiceTest<T, ID> {
-    protected CrudService<T, ID> service;
+abstract class AbstractMapServiceTest<T extends BaseEntity> {
+    protected CrudService<T, Long> service;
 
     abstract T givenObject();
-    abstract ID getObjectId(final T object);
 
     @Test
     void testFindById() {
         final T object = givenObject();
 
         service.save(object);
-        final T actualObject = service.findById(getObjectId(object));
+        final T actualObject = service.findById(object.getId());
 
         assertThat(actualObject).isEqualTo(object);
     }
@@ -45,7 +45,7 @@ abstract class AbstractMapServiceTest<T, ID> {
 
         service.save(object);
         service.delete(object);
-        final Object actualObject = service.findById(getObjectId(object));
+        final Object actualObject = service.findById(object.getId());
 
         assertThat(actualObject).isNull();
     }
@@ -55,8 +55,8 @@ abstract class AbstractMapServiceTest<T, ID> {
         final T object = givenObject();
 
         service.save(object);
-        service.deleteById(getObjectId(object));
-        final Object actualObject = service.findById(getObjectId(object));
+        service.deleteById(object.getId());
+        final Object actualObject = service.findById(object.getId());
 
         assertThat(actualObject).isNull();
     }

@@ -7,12 +7,9 @@ import svalbuena.springframework.sfgpetclinic.model.PetType;
 
 import java.time.LocalDate;
 
-class PetMapServiceTest extends AbstractMapServiceTest<Pet, Long> {
-    private Long nextId;
-
+class PetMapServiceTest extends AbstractMapServiceTest<Pet> {
     @BeforeEach
     void setUp() {
-        nextId = 0L;
         service = new PetMapService();
     }
 
@@ -21,18 +18,11 @@ class PetMapServiceTest extends AbstractMapServiceTest<Pet, Long> {
         return givenPet();
     }
 
-    @Override
-    Long getObjectId(final Pet pet) {
-        return pet.getId();
-    }
-
     private Pet givenPet() {
-        final Long id = getNextId();
         final Pet pet = new Pet();
-        pet.setId(id);
         pet.setBirthDate(LocalDate.EPOCH);
         pet.setOwner(givenOwner());
-        pet.setType(givenPetType(id));
+        pet.setType(givenPetType());
         return pet;
     }
 
@@ -44,15 +34,9 @@ class PetMapServiceTest extends AbstractMapServiceTest<Pet, Long> {
         return owner;
     }
 
-    private PetType givenPetType(final Long id) {
+    private PetType givenPetType() {
         final PetType type = new PetType();
-        type.setName("PET_TYPE_" + id);
+        type.setName("PET_TYPE");
         return type;
-    }
-
-    private Long getNextId() {
-        final Long id = nextId;
-        nextId += 1L;
-        return id;
     }
 }
