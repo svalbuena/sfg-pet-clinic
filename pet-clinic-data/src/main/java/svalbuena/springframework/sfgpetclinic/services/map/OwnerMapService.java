@@ -1,6 +1,7 @@
 package svalbuena.springframework.sfgpetclinic.services.map;
 
 import org.springframework.stereotype.Service;
+import svalbuena.springframework.sfgpetclinic.model.BaseEntity;
 import svalbuena.springframework.sfgpetclinic.model.Owner;
 import svalbuena.springframework.sfgpetclinic.services.OwnerService;
 import svalbuena.springframework.sfgpetclinic.services.PetService;
@@ -15,7 +16,9 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Owner save(final Owner owner) {
-        owner.getPets().forEach(petService::save);
+        owner.getPets().stream()
+                .filter(BaseEntity::doesNotHaveId)
+                .forEach(petService::save);
         return super.save(owner);
     }
 

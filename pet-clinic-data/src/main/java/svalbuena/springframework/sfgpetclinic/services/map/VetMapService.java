@@ -1,6 +1,7 @@
 package svalbuena.springframework.sfgpetclinic.services.map;
 
 import org.springframework.stereotype.Service;
+import svalbuena.springframework.sfgpetclinic.model.BaseEntity;
 import svalbuena.springframework.sfgpetclinic.model.Vet;
 import svalbuena.springframework.sfgpetclinic.services.SpecialtyService;
 import svalbuena.springframework.sfgpetclinic.services.VetService;
@@ -15,7 +16,9 @@ public class VetMapService extends AbstractMapService<Vet, Long> implements VetS
 
     @Override
     public Vet save(final Vet vet) {
-        vet.getSpecialties().forEach(specialtyService::save);
+        vet.getSpecialties().stream()
+                .filter(BaseEntity::doesNotHaveId)
+                .forEach(specialtyService::save);
         return super.save(vet);
     }
 }
