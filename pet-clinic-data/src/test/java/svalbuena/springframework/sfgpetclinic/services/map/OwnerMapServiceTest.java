@@ -12,7 +12,7 @@ class OwnerMapServiceTest extends AbstractMapServiceTest<Owner> {
 
     @BeforeEach
     void setUp() {
-        ownerService = new OwnerMapService();
+        ownerService = new OwnerMapService(new PetMapService(new PetTypeMapService()));
         service = ownerService;
     }
 

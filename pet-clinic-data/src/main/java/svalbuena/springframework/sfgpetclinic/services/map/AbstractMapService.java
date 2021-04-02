@@ -24,10 +24,6 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
 
     @Override
     public T save(final T object) {
-        if (object == null) {
-            throw new RuntimeException("Object cannot be null");
-        }
-
         if (object.getId() == null) {
             object.setId(getNextId());
         }

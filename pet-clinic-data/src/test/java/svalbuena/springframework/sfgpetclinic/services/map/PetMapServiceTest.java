@@ -10,7 +10,7 @@ import java.time.LocalDate;
 class PetMapServiceTest extends AbstractMapServiceTest<Pet> {
     @BeforeEach
     void setUp() {
-        service = new PetMapService();
+        service = new PetMapService(new PetTypeMapService());
     }
 
     @Override
