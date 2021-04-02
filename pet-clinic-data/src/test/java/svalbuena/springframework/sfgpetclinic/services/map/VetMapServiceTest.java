@@ -6,7 +6,7 @@ import svalbuena.springframework.sfgpetclinic.model.Vet;
 class VetMapServiceTest extends AbstractMapServiceTest<Vet> {
     @BeforeEach
     void setUp() {
-        service = new VetMapService();
+        service = new VetMapService(new SpecialtyMapService());
     }
 
     @Override
