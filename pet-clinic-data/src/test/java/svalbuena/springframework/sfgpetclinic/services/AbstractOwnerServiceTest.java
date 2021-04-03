@@ -1,6 +1,5 @@
 package svalbuena.springframework.sfgpetclinic.services;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import svalbuena.springframework.sfgpetclinic.model.Owner;
 
