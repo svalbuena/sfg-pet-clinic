@@ -8,7 +8,7 @@ import svalbuena.springframework.sfgpetclinic.services.VetService;
 
 @Profile("springdatajpa")
 @Service
-public class VetJpaService extends AbstractJpaService<Vet, Long, VetRepository> implements VetService {
+public class VetJpaService extends AbstractJpaService<Vet, VetRepository> implements VetService {
     public VetJpaService(VetRepository repository) {
         super(repository);
     }

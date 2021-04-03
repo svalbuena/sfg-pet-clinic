@@ -9,11 +9,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> implements CrudService<T, ID> {
+public abstract class AbstractMapService<T extends BaseEntity> implements CrudService<T, Long> {
     protected Map<Long, T> map = new HashMap<>();
 
     @Override
-    public T findById(final ID id) {
+    public T findById(final Long id) {
         return map.get(id);
     }
 
@@ -37,7 +37,7 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
     }
 
     @Override
-    public void deleteById(final ID id) {
+    public void deleteById(final Long id) {
         map.remove(id);
     }
 

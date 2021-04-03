@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public abstract class AbstractJpaService<T extends BaseEntity, ID extends Long, R extends CrudRepository<T, ID>> implements CrudService<T, ID> {
+public abstract class AbstractJpaService<T extends BaseEntity, R extends CrudRepository<T, Long>> implements CrudService<T, Long> {
     protected final R repository;
 
     public AbstractJpaService(final R repository) {
@@ -16,7 +16,7 @@ public abstract class AbstractJpaService<T extends BaseEntity, ID extends Long, 
     }
 
     @Override
-    public T findById(final ID id) {
+    public T findById(final Long id) {
         return repository.findById(id)
                 .orElse(null);
     }
@@ -39,7 +39,7 @@ public abstract class AbstractJpaService<T extends BaseEntity, ID extends Long, 
     }
 
     @Override
-    public void deleteById(final ID id) {
+    public void deleteById(final Long id) {
         repository.deleteById(id);
     }
 }

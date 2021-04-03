@@ -5,4 +5,4 @@ import svalbuena.springframework.sfgpetclinic.model.Specialty;
 import svalbuena.springframework.sfgpetclinic.services.SpecialtyService;
 
 @Service
-public class SpecialtyMapService extends AbstractMapService<Specialty, Long> implements SpecialtyService {}
+public class SpecialtyMapService extends AbstractMapService<Specialty> implements SpecialtyService {}

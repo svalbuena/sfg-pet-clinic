@@ -7,7 +7,7 @@ import svalbuena.springframework.sfgpetclinic.services.OwnerService;
 import svalbuena.springframework.sfgpetclinic.services.PetService;
 
 @Service
-public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
+public class OwnerMapService extends AbstractMapService<Owner> implements OwnerService {
     private final PetService petService;
 
     public OwnerMapService(final PetService petService) {

@@ -9,7 +9,7 @@ import svalbuena.springframework.sfgpetclinic.services.OwnerService;
 
 @Profile("springdatajpa")
 @Service
-public class OwnerJpaService extends AbstractJpaService<Owner, Long, OwnerRepository> implements OwnerService {
+public class OwnerJpaService extends AbstractJpaService<Owner, OwnerRepository> implements OwnerService {
     public OwnerJpaService(final OwnerRepository repository) {
         super(repository);
     }

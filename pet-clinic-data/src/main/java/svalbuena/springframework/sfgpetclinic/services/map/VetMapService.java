@@ -7,7 +7,7 @@ import svalbuena.springframework.sfgpetclinic.services.SpecialtyService;
 import svalbuena.springframework.sfgpetclinic.services.VetService;
 
 @Service
-public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
+public class VetMapService extends AbstractMapService<Vet> implements VetService {
     private final SpecialtyService specialtyService;
 
     public VetMapService(final SpecialtyService specialtyService) {

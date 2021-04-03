@@ -1,18 +1,24 @@
-package svalbuena.springframework.sfgpetclinic.services.map;
+package svalbuena.springframework.sfgpetclinic.services;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import svalbuena.springframework.sfgpetclinic.model.BaseEntity;
-import svalbuena.springframework.sfgpetclinic.services.CrudService;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-abstract class AbstractMapServiceTest<T extends BaseEntity> {
-    protected CrudService<T, Long> service;
+abstract class AbstractServiceTest<T extends BaseEntity, S extends CrudService<T, Long>> {
+    S service;
 
-    abstract T givenObject();
+    protected abstract S givenServiceImplementation();
+    protected abstract T givenObject();
+
+    @BeforeEach
+    public void setUp() {
+        service = givenServiceImplementation();
+    }
 
     @Test
     void testFindById() {

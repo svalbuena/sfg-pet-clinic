@@ -1,23 +1,11 @@
 package svalbuena.springframework.sfgpetclinic.services.map;
 
-import org.junit.jupiter.api.BeforeEach;
-import svalbuena.springframework.sfgpetclinic.model.Vet;
+import svalbuena.springframework.sfgpetclinic.services.VetService;
+import svalbuena.springframework.sfgpetclinic.services.AbstractVetServiceTest;
 
-class VetMapServiceTest extends AbstractMapServiceTest<Vet> {
-    @BeforeEach
-    void setUp() {
-        service = new VetMapService(new SpecialtyMapService());
-    }
-
+public class VetMapServiceTest extends AbstractVetServiceTest {
     @Override
-    Vet givenObject() {
-        return givenVet();
-    }
-
-    private Vet givenVet() {
-        final Vet vet = new Vet();
-        vet.setFirstName("FIRST_NAME");
-        vet.setLastName("LAST_NAME");
-        return vet;
+    protected VetService givenServiceImplementation() {
+        return new VetMapService(new SpecialtyMapService());
     }
 }
