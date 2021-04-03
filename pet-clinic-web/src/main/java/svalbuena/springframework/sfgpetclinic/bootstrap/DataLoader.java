@@ -43,17 +43,15 @@ public class DataLoader implements CommandLineRunner {
         final PetType catType = petTypeService.save(createPetType("cat"));
 
         final Owner owner1 = createOwner("John", "Howards");
-        final Pet dog1 = createPet("Bimbo", dogType, owner1);
-        owner1.getPets().add(dog1);
-        final Pet cat1 = createPet("Miau", catType, owner1);
-        owner1.getPets().add(cat1);
+        owner1
+                .addPet(createPet("Bimbo", dogType))
+                .addPet(createPet("Bimbo", dogType));
         ownerService.save(owner1);
 
         final Owner owner2 = createOwner("Peter", "Samuels");
-        final Pet cat2 = createPet("Gulp", catType, owner2);
-        owner2.getPets().add(cat2);
-        final Pet cat3 = createPet("Birp", catType, owner2);
-        owner2.getPets().add(cat3);
+        owner2
+                .addPet(createPet("Gulp", catType))
+                .addPet(createPet("Birp", catType));
         ownerService.save(owner2);
 
         final Specialty dentistry = specialtyService.save(createSpecialty("dentistry"));
@@ -61,12 +59,13 @@ public class DataLoader implements CommandLineRunner {
         final Specialty surgery = specialtyService.save(createSpecialty("surgery"));
 
         final Vet vet1 = createVet("Key", "Master");
-        vet1.getSpecialties().add(dentistry);
+        vet1.addSpecialty(dentistry);
         vetService.save(vet1);
 
         final Vet vet2 = createVet("Anna", "Limp");
-        vet2.getSpecialties().add(radiology);
-        vet2.getSpecialties().add(surgery);
+        vet2
+                .addSpecialty(radiology)
+                .addSpecialty(surgery);
         vetService.save(vet2);
 
         System.out.println("Loaded!!");
@@ -88,11 +87,10 @@ public class DataLoader implements CommandLineRunner {
         return petType;
     }
 
-    private Pet createPet(final String name, final PetType type, final Owner owner) {
+    private Pet createPet(final String name, final PetType type) {
         final Pet pet = new Pet();
         pet.setName(name);
-        pet.setType(type);
-        pet.setOwner(owner);
+        pet.setPetType(type);
         pet.setBirthDate(LocalDate.now());
         return pet;
     }

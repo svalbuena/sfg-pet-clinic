@@ -21,4 +21,9 @@ public class Vet extends Person {
     public void setSpecialties(Set<Specialty> specialties) {
         this.specialties = specialties;
     }
+
+    public Vet addSpecialty(final Specialty specialty) {
+        specialties.add(specialty);
+        return this;
+    }
 }

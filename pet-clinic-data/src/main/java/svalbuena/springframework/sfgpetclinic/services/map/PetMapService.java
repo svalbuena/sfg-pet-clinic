@@ -16,7 +16,7 @@ public class PetMapService extends AbstractMapService<Pet, Long> implements PetS
 
     @Override
     public Pet save(final Pet pet) {
-        final PetType petType = pet.getType();
+        final PetType petType = pet.getPetType();
         if (petType.doesNotHaveId()) {
             petTypeService.save(petType);
         }

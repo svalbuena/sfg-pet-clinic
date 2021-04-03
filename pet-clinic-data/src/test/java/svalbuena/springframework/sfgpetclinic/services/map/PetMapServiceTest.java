@@ -22,7 +22,7 @@ class PetMapServiceTest extends AbstractMapServiceTest<Pet> {
         final Pet pet = new Pet();
         pet.setBirthDate(LocalDate.EPOCH);
         pet.setOwner(givenOwner());
-        pet.setType(givenPetType());
+        pet.setPetType(givenPetType());
         return pet;
     }
 

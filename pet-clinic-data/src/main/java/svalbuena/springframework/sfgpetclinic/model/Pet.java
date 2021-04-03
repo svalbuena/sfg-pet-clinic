@@ -13,7 +13,7 @@ public class Pet extends BaseEntity {
     private String name;
 
     @ManyToOne
-    private PetType type;
+    private PetType petType;
 
     @ManyToOne
     private Owner owner;
@@ -31,12 +31,12 @@ public class Pet extends BaseEntity {
         this.name = name;
     }
 
-    public PetType getType() {
-        return type;
+    public PetType getPetType() {
+        return petType;
     }
 
-    public void setType(final PetType type) {
-        this.type = type;
+    public void setPetType(final PetType type) {
+        this.petType = type;
     }
 
     public Owner getOwner() {
@@ -61,5 +61,11 @@ public class Pet extends BaseEntity {
 
     public void setVisits(Set<Visit> visits) {
         this.visits = visits;
+    }
+
+    public Pet addVisit(final Visit visit) {
+        visit.setPet(this);
+        visits.add(visit);
+        return this;
     }
 }
