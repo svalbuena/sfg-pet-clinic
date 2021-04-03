@@ -10,15 +10,12 @@ import svalbuena.springframework.sfgpetclinic.services.OwnerService;
 @Profile("springdatajpa")
 @Service
 public class OwnerJpaService extends AbstractJpaService<Owner, Long, OwnerRepository> implements OwnerService {
-    private final OwnerRepository ownerRepository;
-
-    public OwnerJpaService(final OwnerRepository ownerRepository) {
-        super(ownerRepository);
-        this.ownerRepository = ownerRepository;
+    public OwnerJpaService(final OwnerRepository repository) {
+        super(repository);
     }
 
     @Override
     public Owner findByLastName(final String lastName) {
-        return ownerRepository.findByLastName(lastName);
+        return repository.findByLastName(lastName);
     }
 }
