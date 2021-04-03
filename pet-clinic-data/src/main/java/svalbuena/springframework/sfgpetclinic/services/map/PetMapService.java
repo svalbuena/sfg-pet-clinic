@@ -1,11 +1,13 @@
 package svalbuena.springframework.sfgpetclinic.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import svalbuena.springframework.sfgpetclinic.model.BaseEntity;
 import svalbuena.springframework.sfgpetclinic.model.Pet;
 import svalbuena.springframework.sfgpetclinic.model.PetType;
 import svalbuena.springframework.sfgpetclinic.services.PetService;
 
+@Profile({"default", "map"})
 @Service
 public class PetMapService extends AbstractMapService<Pet> implements PetService {
     private final PetTypeMapService petTypeMapService;

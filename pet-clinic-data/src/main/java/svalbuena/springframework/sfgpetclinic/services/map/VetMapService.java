@@ -1,10 +1,12 @@
 package svalbuena.springframework.sfgpetclinic.services.map;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import svalbuena.springframework.sfgpetclinic.model.BaseEntity;
 import svalbuena.springframework.sfgpetclinic.model.Vet;
 import svalbuena.springframework.sfgpetclinic.services.VetService;
 
+@Profile({"default", "map"})
 @Service
 public class VetMapService extends AbstractMapService<Vet> implements VetService {
     private final SpecialtyMapService specialtyMapService;
