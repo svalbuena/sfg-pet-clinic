@@ -1,25 +1,30 @@
 package svalbuena.springframework.sfgpetclinic.services.map;
 
 import org.springframework.stereotype.Service;
+import svalbuena.springframework.sfgpetclinic.model.BaseEntity;
 import svalbuena.springframework.sfgpetclinic.model.Pet;
 import svalbuena.springframework.sfgpetclinic.model.PetType;
 import svalbuena.springframework.sfgpetclinic.services.PetService;
-import svalbuena.springframework.sfgpetclinic.services.PetTypeService;
 
 @Service
 public class PetMapService extends AbstractMapService<Pet> implements PetService {
-    final PetTypeService petTypeService;
+    private final PetTypeMapService petTypeMapService;
+    private final VisitMapService visitMapService;
 
-    public PetMapService(final PetTypeService petTypeService) {
-        this.petTypeService = petTypeService;
+    public PetMapService() {
+        this.petTypeMapService = new PetTypeMapService();
+        this.visitMapService = new VisitMapService();
     }
 
     @Override
     public Pet save(final Pet pet) {
         final PetType petType = pet.getPetType();
         if (petType.doesNotHaveId()) {
-            petTypeService.save(petType);
+            petTypeMapService.save(petType);
         }
+        pet.getVisits().stream()
+                .filter(BaseEntity::doesNotHaveId)
+                .forEach(visitMapService::save);
         return super.save(pet);
     }
 }

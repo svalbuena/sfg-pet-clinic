@@ -7,6 +7,7 @@ import svalbuena.springframework.sfgpetclinic.model.Pet;
 import svalbuena.springframework.sfgpetclinic.model.PetType;
 import svalbuena.springframework.sfgpetclinic.model.Specialty;
 import svalbuena.springframework.sfgpetclinic.model.Vet;
+import svalbuena.springframework.sfgpetclinic.model.Visit;
 import svalbuena.springframework.sfgpetclinic.services.OwnerService;
 import svalbuena.springframework.sfgpetclinic.services.PetTypeService;
 import svalbuena.springframework.sfgpetclinic.services.SpecialtyService;
@@ -43,14 +44,20 @@ public class DataLoader implements CommandLineRunner {
         final PetType catType = petTypeService.save(createPetType("cat"));
 
         final Owner owner1 = createOwner("John", "Howards");
+        final Pet dog1 = createPet("Bimbo", dogType);
+        dog1
+                .addVisit(createVisit("Visit for broken leg"))
+                .addVisit(createVisit("Visit for RX"));
         owner1
-                .addPet(createPet("Bimbo", dogType))
+                .addPet(dog1)
                 .addPet(createPet("Bimbo", dogType));
         ownerService.save(owner1);
 
         final Owner owner2 = createOwner("Peter", "Samuels");
+        final Pet cat1 = createPet("Gulp", catType);
+        cat1.addVisit(createVisit("Visit for fever"));
         owner2
-                .addPet(createPet("Gulp", catType))
+                .addPet(cat1)
                 .addPet(createPet("Birp", catType));
         ownerService.save(owner2);
 
@@ -106,5 +113,12 @@ public class DataLoader implements CommandLineRunner {
         final Specialty speciality = new Specialty();
         speciality.setDescription(description);
         return speciality;
+    }
+
+    private Visit createVisit(final String description) {
+        final Visit visit = new Visit();
+        visit.setDescription(description);
+        visit.setDate(LocalDate.now());
+        return visit;
     }
 }

@@ -6,6 +6,6 @@ import svalbuena.springframework.sfgpetclinic.services.AbstractVetServiceTest;
 public class VetMapServiceTest extends AbstractVetServiceTest {
     @Override
     protected VetService givenServiceImplementation() {
-        return new VetMapService(new SpecialtyMapService());
+        return new VetMapService();
     }
 }

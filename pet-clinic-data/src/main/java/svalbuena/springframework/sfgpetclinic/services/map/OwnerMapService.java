@@ -4,21 +4,20 @@ import org.springframework.stereotype.Service;
 import svalbuena.springframework.sfgpetclinic.model.BaseEntity;
 import svalbuena.springframework.sfgpetclinic.model.Owner;
 import svalbuena.springframework.sfgpetclinic.services.OwnerService;
-import svalbuena.springframework.sfgpetclinic.services.PetService;
 
 @Service
 public class OwnerMapService extends AbstractMapService<Owner> implements OwnerService {
-    private final PetService petService;
+    private final PetMapService petMapService;
 
-    public OwnerMapService(final PetService petService) {
-        this.petService = petService;
+    public OwnerMapService() {
+        this.petMapService = new PetMapService();
     }
 
     @Override
     public Owner save(final Owner owner) {
         owner.getPets().stream()
                 .filter(BaseEntity::doesNotHaveId)
-                .forEach(petService::save);
+                .forEach(petMapService::save);
         return super.save(owner);
     }
 
