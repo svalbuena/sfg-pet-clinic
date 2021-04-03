@@ -1,25 +1,21 @@
 package svalbuena.springframework.sfgpetclinic.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.MappedSuperclass;
 
+@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper = true)
 @MappedSuperclass
 public class Person extends BaseEntity {
     private String firstName;
     private String lastName;
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(final String firstName) {
+    public Person(final String firstName, final String lastName) {
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 }

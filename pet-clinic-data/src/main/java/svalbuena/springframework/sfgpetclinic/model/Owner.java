@@ -1,11 +1,18 @@
 package svalbuena.springframework.sfgpetclinic.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.HashSet;
 import java.util.Set;
 
+@NoArgsConstructor
+@Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 public class Owner extends Person {
     private String address;
@@ -17,36 +24,11 @@ public class Owner extends Person {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
+    public Owner(final String firstName, final String lastName, final String address, final String city, final String telephone) {
+        super(firstName, lastName);
         this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-
-    public Set<Pet> getPets() {
-        return pets;
-    }
-
-    public void setPets(Set<Pet> pets) {
-        this.pets = pets;
     }
 
     public Owner addPet(final Pet pet) {

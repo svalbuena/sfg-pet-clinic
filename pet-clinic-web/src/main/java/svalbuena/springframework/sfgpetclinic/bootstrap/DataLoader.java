@@ -50,7 +50,7 @@ public class DataLoader implements CommandLineRunner {
                 .addVisit(createVisit("Visit for RX"));
         owner1
                 .addPet(dog1)
-                .addPet(createPet("Bimbo", dogType));
+                .addPet(createPet("Luke", dogType));
         ownerService.save(owner1);
 
         final Owner owner2 = createOwner("Peter", "Samuels");
@@ -79,46 +79,26 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private Owner createOwner(final String firstName, final String lastName) {
-        final Owner owner = new Owner();
-        owner.setFirstName(firstName);
-        owner.setLastName(lastName);
-        owner.setAddress("123 Street");
-        owner.setCity("Miami");
-        owner.setTelephone("89131233121");
-        return owner;
+        return new Owner(firstName, lastName, "123 Street", "Miami", "89131233121");
     }
 
     private PetType createPetType(final String name) {
-        final PetType petType = new PetType();
-        petType.setName(name);
-        return petType;
+        return new PetType(name);
     }
 
     private Pet createPet(final String name, final PetType type) {
-        final Pet pet = new Pet();
-        pet.setName(name);
-        pet.setPetType(type);
-        pet.setBirthDate(LocalDate.now());
-        return pet;
+        return new Pet(name, type, LocalDate.EPOCH);
     }
 
     private Vet createVet(final String firstName, final String lastName) {
-        final Vet vet = new Vet();
-        vet.setFirstName(firstName);
-        vet.setLastName(lastName);
-        return vet;
+        return new Vet(firstName, lastName);
     }
 
     private Specialty createSpecialty(final String description) {
-        final Specialty speciality = new Specialty();
-        speciality.setDescription(description);
-        return speciality;
+        return new Specialty(description);
     }
 
     private Visit createVisit(final String description) {
-        final Visit visit = new Visit();
-        visit.setDescription(description);
-        visit.setDate(LocalDate.now());
-        return visit;
+        return new Visit(description, LocalDate.now());
     }
 }
