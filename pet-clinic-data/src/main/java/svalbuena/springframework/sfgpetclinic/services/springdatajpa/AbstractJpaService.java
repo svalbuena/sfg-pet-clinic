@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-public abstract class AbstractJpaService<T extends BaseEntity, R extends CrudRepository<T, Long>> implements CrudService<T, Long> {
+public abstract class AbstractJpaService<T extends BaseEntity , R extends CrudRepository<T, Long>> implements CrudService<T, Long> {
     protected final R repository;
 
     public AbstractJpaService(final R repository) {
